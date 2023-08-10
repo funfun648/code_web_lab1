@@ -8,20 +8,25 @@ class login
     }
 
     public function processLogin() {
-
         $username = $_POST['username'];
         $password = $_POST['password'];
-
+        $username = strip_tags($username);
+        $password = strip_tags($password);
+        $username= addslashes($username);
+        $password= addslashes($password);
         $userid = $this->authenticateUser($username, $password);
- 
-        if ($userid) {    
+        if ($userid) {
+            $model = new model();  
+            $user = $model->get_user_by_ID($userid);
             session_start();
-            $_SESSION['username'] = $username;
+            $_SESSION['user'] = $user;
             header('Location: info.php?user='.$userid);
         } else {
             $error_message = "Tên đăng nhập hoặc mật khẩu không đúng.";
             include '../view/login_form.php';
+
         }
+
     }
 
     public function logout() {
@@ -31,7 +36,7 @@ class login
     }
 
     private function authenticateUser($username, $password) {
-        $model = new model($username,$password);
+        $model = new model();
         $userid = $model->authentication($username,$password);
 
         return $userid;

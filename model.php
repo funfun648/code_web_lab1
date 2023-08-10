@@ -7,11 +7,10 @@ class model
 
 
     
-    public function __construct ( $username,$password)
+    public function __construct ()
     {
         $this->conection();
-        $this->username = $username ;
-        $this-> password = $password ;
+        
     }
 
 
@@ -30,7 +29,7 @@ class model
     
     public function get_user_by_ID ($id)
     {
-        $sql = "SELECT * FROM user WHERE id = :id";
+        $sql = "SELECT firstname,lastname,email FROM user WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
