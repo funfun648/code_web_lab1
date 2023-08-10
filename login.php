@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { $loginController = new login(); $lo
 class login 
 {
     public function showLoginForm() {
-        include './view/login_form.php';
+        include 'login_form.php';
     }
 
     public function processLogin() {
@@ -23,12 +23,11 @@ class login
             header('Location: info.php?user='.$userid);
         } else {
             $error_message = "Tên đăng nhập hoặc mật khẩu không đúng.";
-            include '../view/login_form.php';
+            include 'login_form.php';
 
         }
 
     }
-
     public function logout() {
         session_start();
         session_destroy();
