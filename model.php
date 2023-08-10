@@ -1,18 +1,17 @@
 <?php
 class model
 {
-    private $servername = "";
     private $username = "";
     private $password = "";
     private $conn ;
 
 
     
-    public function __construct ($servername, $username,$password)
+    public function __construct ( $username,$password)
     {
-        $this->servername = $servername;
-        $this->username = $username;
-        $this-> password = $password;
+        $this->conection();
+        $this->username = $username ;
+        $this-> password = $password ;
     }
 
 
@@ -20,7 +19,7 @@ class model
     public function conection ()
     {
         try {
-            $this->conn = new PDO("mysql:host=$this->servername;dbname=myDB", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=localhost;dbname=myDB", "root", "viet12345");
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
@@ -41,7 +40,10 @@ class model
     }
 
     public function authentication($username, $password) {
-
+        $sql = "SELECT id from user where username = '$username' and password = '$password'";
+        $stmt = $this->conn->query($sql); 
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result[0]['id'];
     }
 }
 ?>

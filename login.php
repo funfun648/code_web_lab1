@@ -1,8 +1,10 @@
 <?php
-class controller
+    include "model.php";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') { $loginController = new login(); $loginController->processLogin(); }
+class login 
 {
     public function showLoginForm() {
-        include './view/login.php';
+        include './view/login_form.php';
     }
 
     public function processLogin() {
@@ -18,7 +20,7 @@ class controller
             header('Location: info.php?user='.$userid);
         } else {
             $error_message = "Tên đăng nhập hoặc mật khẩu không đúng.";
-            include '../view/login.php';
+            include '../view/login_form.php';
         }
     }
 
@@ -29,7 +31,7 @@ class controller
     }
 
     private function authenticateUser($username, $password) {
-        $model = new model("localhost","root","Tru*ng0512");
+        $model = new model($username,$password);
         $userid = $model->authentication($username,$password);
 
         return $userid;
