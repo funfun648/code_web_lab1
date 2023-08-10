@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $loginController->showLoginForm();
             break;
         case 'login.php':
-            include './view/login.php'; 
+            include 'login.php'; 
             break;
 
         default:
@@ -21,6 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             break;
     }
 } else {
-    include './view/login.php'; 
+    include 'login.php'; 
 }
 ?>

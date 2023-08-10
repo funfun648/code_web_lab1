@@ -4,17 +4,11 @@ class model
     private $username = "";
     private $password = "";
     private $conn ;
-
-
-    
     public function __construct ()
     {
         $this->conection();
         
     }
-
-
-
     public function conection ()
     {
         try {
@@ -25,8 +19,6 @@ class model
         }
     }
 
-
-    
     public function get_user_by_ID ($id)
     {
         $sql = "SELECT firstname,lastname,email FROM user WHERE id = :id";
