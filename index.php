@@ -1,7 +1,26 @@
 <?php
-include "model.php";
-$DB_connect = new model("localhost","root","viet12345");
-$DB_connect->conection();
-//$DB_connect->get_user_by_ID(1);
-print_r($DB_connect->get_user_by_ID(3));
+require_once 'login.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $segments = explode('/', $_SERVER['REQUEST_URI']);
+    $page = $segments[1];
+
+
+    switch ($page) {
+        case 'index.php':
+            $loginController = new login();
+            $loginController->showLoginForm();
+            break;
+        case 'login.php':
+            include './view/login.php'; 
+            break;
+
+        default:
+            header('Location: index.php');
+            echo 'Trang không tồn tại';
+            break;
+    }
+} else {
+    include './view/login.php'; 
+}
 ?>

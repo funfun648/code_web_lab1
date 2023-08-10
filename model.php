@@ -5,24 +5,30 @@ class model
     private $username = "";
     private $password = "";
     private $conn ;
+
+
+    
     public function __construct ($servername, $username,$password)
     {
         $this->servername = $servername;
         $this->username = $username;
         $this-> password = $password;
     }
+
+
+
     public function conection ()
     {
-        
-
         try {
-        $this->conn = new PDO("mysql:host=$this->servername;dbname=myDB", $this->username, $this->password);
-        // set the PDO error mode to exception
-        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn = new PDO("mysql:host=$this->servername;dbname=myDB", $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
+            echo "Connection failed: " . $e->getMessage();
         }
     }
+
+
+    
     public function get_user_by_ID ($id)
     {
         $sql = "SELECT * FROM user WHERE id = :id";
@@ -32,6 +38,10 @@ class model
         
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function authentication($username, $password) {
+
     }
 }
 ?>
