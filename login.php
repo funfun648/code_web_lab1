@@ -1,12 +1,16 @@
 <?php
     include "model.php";
-if ($_SERVER['REQUEST_METHOD'] === 'POST') { $loginController = new login(); $loginController->processLogin(); }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+{ 
+    $loginController = new login(); $loginController->processLogin();
+}
+
 class login 
 {
     public function showLoginForm() {
         include 'login_form.php';
     }
-
+    
     public function processLogin() {
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -20,11 +24,10 @@ class login
             $user = $model->get_user_by_ID($userid);
             session_start();
             $_SESSION['user'] = $user;
-            header('Location: info.php?user='.$userid);
+            header('Location: dashboard.php?uID='.md5($userid));
         } else {
             $error_message = "Tên đăng nhập hoặc mật khẩu không đúng.";
             include 'login_form.php';
-
         }
 
     }
