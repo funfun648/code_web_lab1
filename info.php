@@ -93,9 +93,31 @@ if (isset($_SESSION['user'])) {
             font-size: 16px; 
             color: white;
         }
+        strong {
+    font-size: 24px; 
+    color: white; 
+    text-align: center; 
+}
+
+/* Nút hint */
+button {
+    font-size: 24px;
+    color: black; 
+    text-align: center;
+    background-color: white;
+    border: none; 
+    cursor: pointer; 
+}
+
+
+button:hover {
+    background-color: #0077FF; 
+    color: white; 
+}
     </style>
 </head>
 <body>
-<!-- Phần còn lại của trang web -->
+<strong>Hints<br></strong>
+    <button type="button" title="Hint 1" onclick='alert(" SSTI ")'>1</button>
 </body>
 </html>
