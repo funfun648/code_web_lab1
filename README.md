@@ -1,4 +1,4 @@
-Đây là một bài lab về các lỗ hổn như IDOR và SSTI , HHTP header
+Đây là một bài lab về các lỗ hổng như IDOR và SSTI , HHTP header
 
 IDOR(Insecure direct object references) 
 
