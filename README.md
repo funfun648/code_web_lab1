@@ -20,6 +20,7 @@ Dựa vào giá trị của tham số trong yêu cầu: Ứng dụng dựa vào 
 Ta có thể sử dụng burp suite để thực hiện kiểm thử idor
 
 ![image](https://github.com/funfun648/code_web_lab1/assets/128309991/385348b9-6fb6-4f2a-afd1-02720420e232)
+ảnh sử dụng burp để tiến hành test idor trên OWASP juice shop
 
 SSTI
 
